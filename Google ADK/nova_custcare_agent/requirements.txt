@@ -1,0 +1,5 @@
+google-genai>=1.14.0
+google-adk>=1.0.0
+telcoflow-sdk>=0.24.0
+aiosqlite>=0.20.0
+python-dotenv>=1.1.0
