@@ -1,0 +1,10 @@
+# Audio layer
+google-genai>=1.14.0
+telcoflow-sdk>=0.24.0
+
+# Triage layer (CrewAI + Gemini LLM for agents)
+crewai
+langchain-google-genai
+
+# Configuration
+python-dotenv
