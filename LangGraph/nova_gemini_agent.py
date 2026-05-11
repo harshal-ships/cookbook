@@ -1,5 +1,5 @@
 """
-Nova — B3networks Customer Care Voice Agent (LangGraph Edition)
+Nova — B3networks Customer Care Voice Agent
 ================================================================
 
 A complete voice agent using:
