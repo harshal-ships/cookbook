@@ -1,3 +1,13 @@
-google-genai>=1.14.0
+# Shared
 langgraph>=0.4.0
 telcoflow-sdk>=0.24.0
+
+# 1 — Gemini Live (nova_gemini_agent.py)
+google-genai>=1.14.0
+
+# 2 — Amazon Nova Sonic 2 (nova_bedrock_agent.py)
+# Install the experimental AWS SDK from:
+#   pip install aws-sdk-python-bedrock-runtime
+# or from GitHub:
+#   pip install git+https://github.com/awslabs/aws-sdk-python.git#subdirectory=codegen/aws-sdk-bedrock-runtime
+aws-sdk-python-bedrock-runtime

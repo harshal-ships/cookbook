@@ -24,7 +24,7 @@ result back to Gemini so it can continue the conversation.
 The call_id from Telcoflow is used as the LangGraph thread_id, so every
 concurrent call gets its own completely isolated state.
 
-Run with:  python nova_agent.py
+Run with:  python nova_gemini_agent.py
 """
 
 from __future__ import annotations
