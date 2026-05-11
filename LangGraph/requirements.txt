@@ -1,0 +1,3 @@
+google-genai>=1.14.0
+langgraph>=0.4.0
+telcoflow-sdk>=0.24.0
