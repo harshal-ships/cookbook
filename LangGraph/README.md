@@ -9,7 +9,6 @@
 | `nova_gemini_agent.py` | Google Gemini Live | Nova + **tools** + LangGraph |
 | `nova_bedrock_agent.py` | Amazon Nova Sonic 2 (Bedrock) | Same idea; **24 kHz** Telcoflow → **16 kHz** Nova input |
 
-**Helpers:** `test_nova_sonic.py`, `test_sonic_apikey.py`.
 
 ## CrewAI vs LangGraph *(in this repo)*
 
