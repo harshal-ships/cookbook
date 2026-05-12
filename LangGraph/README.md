@@ -10,13 +10,6 @@
 | `nova_bedrock_agent.py` | Amazon Nova Sonic 2 (Bedrock) | Same idea; **24 kHz** Telcoflow → **16 kHz** Nova input |
 
 
-## CrewAI vs LangGraph *(in this repo)*
-
-| | **LangGraph** (this folder) | **CrewAI** (`../CrewAI/`) |
-|---|------------------------------|---------------------------|
-| **Orchestration** | **StateGraph** — nodes, conditional edges, **tool execution**, memory per `thread_id` | **Crew** — **Receptionist → Analyst → Resolver** each caller turn |
-| **Best for** | Tool calling, structured events from the speech API, explicit end-call logic | Multi-role **triage pipeline** that produces **reply text** for Gemini to speak |
-| **Speech** | Model **leads** the conversation (audio native) | Gemini Live bridges audio; **CrewAI text** is what gets spoken |
 
 ## Run
 
