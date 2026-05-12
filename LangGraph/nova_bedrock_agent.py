@@ -32,7 +32,10 @@ import struct
 import uuid
 from typing import Annotated, Literal
 
+from dotenv import load_dotenv
 from typing_extensions import TypedDict
+
+load_dotenv()
 
 from aws_sdk_bedrock_runtime.client import (
     BedrockRuntimeClient,
