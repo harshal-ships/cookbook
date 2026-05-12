@@ -7,7 +7,6 @@ Voice agents that use **Telcoflow** for phone audio and **LangGraph** for per-ca
 | `nova_gemini_agent.py` | Google Gemini Live | B3networks customer care **Nova** — tools + LangGraph |
 | `nova_bedrock_agent.py` | Amazon Nova Sonic 2 (Bedrock) | Same pattern as Gemini; **24 kHz** Telcoflow audio downsampled to **16 kHz** for Nova input |
 
-**Helpers:** `test_nova_sonic.py` (Bedrock text smoke test), `test_sonic_apikey.py` (bidirectional stream + API key check).
 
 ## Run
 
