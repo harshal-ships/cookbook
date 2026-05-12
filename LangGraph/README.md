@@ -1,16 +1,27 @@
 # LangGraph + Telcoflow
 
-Voice agents that use **Telcoflow** for phone audio and **LangGraph** for per-call state (history, tools, when to end the call). Each call is keyed by `call.call_id`.
+## Purpose
+
+**Nova** is a B3networks **customer care** voice agent: **Telcoflow** carries audio; **Gemini Live** or **Nova Sonic 2** does speech-to-speech. **LangGraph** keeps **per-call state** (history, tool results, turn count, whether to end the call) and runs **when the model emits tool calls or completes a turn**—not on every PCM chunk. Use this when you need **stateful graphs, tool routing, and checkpointing** keyed by `call.call_id`.
 
 | Script | Model | Role |
 |--------|--------|------|
-| `nova_gemini_agent.py` | Google Gemini Live | B3networks customer care **Nova** — tools + LangGraph |
-| `nova_bedrock_agent.py` | Amazon Nova Sonic 2 (Bedrock) | Same pattern as Gemini; **24 kHz** Telcoflow audio downsampled to **16 kHz** for Nova input |
+| `nova_gemini_agent.py` | Google Gemini Live | Nova + **tools** + LangGraph |
+| `nova_bedrock_agent.py` | Amazon Nova Sonic 2 (Bedrock) | Same idea; **24 kHz** Telcoflow → **16 kHz** Nova input |
 
+**Helpers:** `test_nova_sonic.py`, `test_sonic_apikey.py`.
+
+## CrewAI vs LangGraph *(in this repo)*
+
+| | **LangGraph** (this folder) | **CrewAI** (`../CrewAI/`) |
+|---|------------------------------|---------------------------|
+| **Orchestration** | **StateGraph** — nodes, conditional edges, **tool execution**, memory per `thread_id` | **Crew** — **Receptionist → Analyst → Resolver** each caller turn |
+| **Best for** | Tool calling, structured events from the speech API, explicit end-call logic | Multi-role **triage pipeline** that produces **reply text** for Gemini to speak |
+| **Speech** | Model **leads** the conversation (audio native) | Gemini Live bridges audio; **CrewAI text** is what gets spoken |
 
 ## Run
 
-Use **Python 3.12+**, a virtualenv, and install from `requirements.txt` (Telcoflow from TestPyPI + Bedrock client from GitHub — see file comments).
+Use **Python 3.12+** and `requirements.txt` (TestPyPI for `telcoflow-sdk`, GitHub for Bedrock streaming client).
 
 ```bash
 source .venv-test/bin/activate   # or your venv
@@ -23,4 +34,4 @@ python nova_bedrock_agent.py
 
 ## Environment
 
-See `.env.example`: Telcoflow (`WSS_*`), Gemini (`GOOGLE_API_KEY`) for the Gemini agent, and **IAM** AWS keys for Nova Sonic (bidirectional streaming does not use Bedrock API keys per AWS docs).
+See `.env.example`: Telcoflow (`WSS_*`), Gemini (`GOOGLE_API_KEY`) for the Gemini agent, and **IAM** AWS keys for Nova Sonic (Bedrock API keys do not support bidirectional streaming per AWS docs).
