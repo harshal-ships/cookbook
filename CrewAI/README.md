@@ -1,6 +1,8 @@
 # CrewAI + Telcoflow + Gemini Live — call triage
 
-B3networks **call triage** voice stack:
+## Purpose
+
+**Crew** is a B3networks **customer-care call triage** voice agent. After each **caller turn** is turned into text (via Gemini Live), a **CrewAI** crew decides what to say next: three specialised agents run **in sequence**, and only the **Resolver**'s output is spoken back to the caller. Use this pattern when you want a **multi-step reasoning / handoff** workflow (reception → categorise → reply) on every turn, instead of a single model driving the whole call.
 
 - **Telcoflow** — answer, stream caller audio, play agent audio, clear buffer on interrupt  
 - **Gemini Live** — speech layer (listen / speak)  
