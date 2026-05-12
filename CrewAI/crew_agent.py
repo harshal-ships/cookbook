@@ -20,7 +20,7 @@ the CrewAI Resolver's response back to the caller.
 
 CrewAI runs a sequential three-agent pipeline after each caller turn:
   1. Receptionist  — extracts key information from the caller's message
-  2. Analyst       — categorises the issue (billing, technical, etc.)
+  2. Analyst       — categorises the issue (billing, technical,etc.)
   3. Resolver      — crafts the spoken response for the caller
 
 The call_id from Telcoflow isolates each call's crew run.
