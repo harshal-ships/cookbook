@@ -1,12 +1,10 @@
-# Amazon Nova Sonic 2 (bidirectional streaming SDK)
-# Install from GitHub — this is an experimental AWS SDK:
-#   pip install aws-sdk-python-bedrock-runtime
-# or:
-#   pip install git+https://github.com/awslabs/aws-sdk-python.git#subdirectory=codegen/aws-sdk-bedrock-runtime
-aws-sdk-python-bedrock-runtime
+# Telcoflow SDK is on TestPyPI only; everything else resolves from PyPI.
+# https://docs.telcoflow.com/introduction/overview
+--extra-index-url https://test.pypi.org/simple/
 
-# Telcoflow — phone call audio I/O
+# Telcoflow — phone audio (aria_bedrock_agent.py)
 telcoflow-sdk>=0.24.0
+python-dotenv>=1.0.0
 
-# Configuration
-python-dotenv
+# Amazon Nova Sonic 2 (bidirectional stream) — not on PyPI; needs Python >=3.12
+git+https://github.com/awslabs/aws-sdk-python.git#subdirectory=clients/aws-sdk-bedrock-runtime

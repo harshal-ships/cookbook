@@ -1,10 +1,14 @@
-# Audio layer
-google-genai>=1.14.0
-telcoflow-sdk>=0.24.0
+# Telcoflow SDK is on TestPyPI only; everything else resolves from PyPI.
+# https://docs.telcoflow.com/introduction/overview
+--extra-index-url https://test.pypi.org/simple/
 
-# Triage layer (CrewAI + Gemini LLM for agents)
+# Telcoflow — phone audio (crew_agent.py)
+telcoflow-sdk>=0.24.0
+python-dotenv>=1.0.0
+
+# Audio layer — Gemini Live
+google-genai>=1.14.0
+
+# Triage — CrewAI agents (Gemini 2.0 Flash via langchain-google-genai)
 crewai
 langchain-google-genai
-
-# Configuration
-python-dotenv
