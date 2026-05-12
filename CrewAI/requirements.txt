@@ -6,9 +6,8 @@
 telcoflow-sdk>=0.24.0
 python-dotenv>=1.0.0
 
-# Audio layer — Gemini Live
-google-genai>=1.14.0
+# Gemini Live: stay on 1.x (langchain-google-genai in the stack requires google-genai<2)
+google-genai>=1.75.0,<2
 
-# Triage — CrewAI agents (Gemini 2.0 Flash via langchain-google-genai)
-crewai
-langchain-google-genai
+# Triage — CrewAI `LLM(model="gemini/...")` (no [google-genai] extra → fewer resolver conflicts)
+crewai>=1.0.0

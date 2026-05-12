@@ -34,8 +34,11 @@ import asyncio
 import logging
 import os
 
-from crewai import Agent, Task, Crew, Process
-from langchain_google_genai import ChatGoogleGenerativeAI
+from dotenv import load_dotenv
+
+load_dotenv()
+
+from crewai import Agent, Task, Crew, Process, LLM
 
 from google import genai
 from google.genai import types
@@ -82,15 +85,15 @@ voice. Do not add commentary or change the message.
 """
 
 # ---------------------------------------------------------------------------
-# CrewAI LLM — all triage agents use Gemini 2.0 Flash
+# CrewAI LLM — native Gemini binding (Agent rejects raw ChatGoogleGenerativeAI)
 #
-# langchain_google_genai.ChatGoogleGenerativeAI is passed directly to
-# each CrewAI agent so no OpenAI key is needed.
+# Uses GOOGLE_API_KEY / GEMINI_API_KEY from the environment. Model id matches
+# CrewAI’s Google provider: gemini/gemini-2.0-flash
 # ---------------------------------------------------------------------------
 
-crew_llm = ChatGoogleGenerativeAI(
-    model="gemini-2.0-flash",
-    google_api_key=os.getenv("GOOGLE_API_KEY"),
+crew_llm = LLM(
+    model="gemini/gemini-2.0-flash",
+    api_key=os.getenv("GOOGLE_API_KEY"),
 )
 
 # ---------------------------------------------------------------------------
