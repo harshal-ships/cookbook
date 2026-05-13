@@ -8,7 +8,7 @@
 - **Gemini Live** — speech layer (listen / speak)  
 - **CrewAI** — after each **caller** turn, runs three agents in order: **Receptionist → Analyst → Resolver**. The Resolver’s text is what gets spoken back via Gemini  
 
-The voice persona name is **Crew** (not Nova). All CrewAI agents use **Gemini 2.0 Flash** via `langchain_google_genai` (no OpenAI key).
+The voice persona name is **Crew**. All CrewAI agents use **Gemini 2.0 Flash** via `langchain_google_genai`.
 
 | Script | Description |
 |--------|-------------|
