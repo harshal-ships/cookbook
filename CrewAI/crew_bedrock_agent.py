@@ -44,7 +44,7 @@ from smithy_aws_core.identity.environment import EnvironmentCredentialsResolver
 from telcoflow_sdk import TelcoflowClient, TelcoflowClientConfig, ActiveCall
 import telcoflow_sdk.events as events
 
-from crew_agent import build_triage_crew
+from crew_gemini_agent import build_triage_crew
 
 # ---------------------------------------------------------------------------
 # Logging
