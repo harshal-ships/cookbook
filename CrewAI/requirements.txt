@@ -2,9 +2,12 @@
 # https://docs.telcoflow.com/introduction/overview
 --extra-index-url https://test.pypi.org/simple/
 
-# Telcoflow — phone audio (crew_agent.py)
+# Telcoflow — phone audio
 telcoflow-sdk>=0.24.0
 python-dotenv>=1.0.0
+
+# Amazon Nova Sonic 2 (crew_bedrock_agent.py) — Python >=3.12; install from GitHub
+git+https://github.com/awslabs/aws-sdk-python.git#subdirectory=clients/aws-sdk-bedrock-runtime
 
 # Gemini Live:stay on 1.x (langchain-google-genai in the stack requires google-genai<2)
 google-genai>=1.75.0,<2
