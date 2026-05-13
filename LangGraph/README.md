@@ -1,6 +1,6 @@
 # LangGraph + Telcoflow
 
-## Purpose
+## Overview
 
 **Nova** is a B3networks **customer care** voice agent: **Telcoflow** carries audio; **Gemini Live** or **Nova Sonic 2** does speech-to-speech. **LangGraph** keeps **per-call state** (history, tool results, turn count, whether to end the call) and runs **when the model emits tool calls or completes a turn**—not on every PCM chunk. Use this when you need **stateful graphs, tool routing, and checkpointing** keyed by `call.call_id`.
 
