@@ -1,4 +1,4 @@
-# Bedrock + Telcoflow
+# Overview
 
 **Aria** is a B3networks **sales enquiry** voice agent: Telcoflow handles the call, **Amazon Nova Sonic 2** on Bedrock handles **native speech-to-speech** (no separate STT/TTS).
 | Script | Description |
