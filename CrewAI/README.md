@@ -1,5 +1,3 @@
-# CrewAI + Telcoflow — call triage
-
 ## Overview
 
 **Crew** is a B3networks **customer-care call triage** voice agent. After each **caller turn** is turned into text by the speech layer, a **CrewAI** crew decides what to say next: three specialised agents run **in sequence**, and only the **Resolver**'s output is spoken back to the caller. Use this pattern when you want a **multi-step reasoning / handoff** workflow (reception → categorise → reply) on every turn, instead of a single model driving the whole call.
