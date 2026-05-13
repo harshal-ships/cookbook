@@ -1,6 +1,6 @@
-# Nova — AI Customer Care Agent
+## Overview
 
-A fully autonomous customer care voice agent for **B3Networks** built with the **Google ADK** (Agent Development Kit) and the **Telcoflow SDK**. Nova answers every call, identifies the caller, and resolves their issue without ever escalating to a human.
+Nova is a fully autonomous customer care voice agent for **B3Networks** built with the **Google ADK** (Agent Development Kit) and the **Telcoflow SDK**. Nova answers every call, identifies the caller, and resolves their issue without ever escalating to a human.
 
 This is the first agent in the repo to use the **ADK pipeline** (`Agent → Runner → run_live()`) instead of the raw GenAI Live API. ADK handles the tool-execution loop automatically — no manual `tool_call` / `send_tool_response` dispatch.
 
