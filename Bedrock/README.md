@@ -1,7 +1,6 @@
-# Bedrock + Telcoflow — Aria (sales)
+# Bedrock + Telcoflow
 
-**Aria** is a B3networks **sales enquiry** voice agent: Telcoflow handles the call, **Amazon Nova Sonic 2** on Bedrock handles **native speech-to-speech** (no separate STT/TTS). There is no LangGraph layer here—only the audio bridge and Nova’s session events.
-
+**Aria** is a B3networks **sales enquiry** voice agent: Telcoflow handles the call, **Amazon Nova Sonic 2** on Bedrock handles **native speech-to-speech** (no separate STT/TTS).
 | Script | Description |
 |--------|-------------|
 | `aria_bedrock_agent.py` | Incoming call → answer → stream PCM to Nova → play Nova audio back; clears playback on barge-in |
