@@ -56,12 +56,7 @@ AWS_ACCESS_KEY_ID=...
 AWS_SECRET_ACCESS_KEY=...
 AWS_SESSION_TOKEN=...
 AWS_REGION=us-east-1
-```
-
-Optional:
-
-```env
-HEALTHFIRST_CLINIC_PHONE=+656XXXXXX
+HEALTHFIRST_CLINIC_PHONE=
 ```
 
 Nova Sonic 2 only runs in **`us-east-1`**. Refresh AWS SSO credentials when the session token expires.
