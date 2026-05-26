@@ -59,7 +59,7 @@ AWS_REGION=us-east-1
 HEALTHFIRST_CLINIC_PHONE=
 ```
 
-Nova Sonic 2 only runs in **`us-east-1`**. Refresh AWS SSO credentials when the session token expires.
+Nova Sonic 2 only runs in **`us-east-1`**.
 
 ## Logs
 
