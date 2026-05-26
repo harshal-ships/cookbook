@@ -1,0 +1,14 @@
+# Python 3.12+ required (Nova Sonic Bedrock SDK)
+#
+# Install telcoflow-sdk from TestPyPI, then the rest from PyPI:
+#   pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ telcoflow-sdk==0.27.1
+#   pip install -r requirements.txt
+#
+# Or in one go:
+#   pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ -r requirements.txt
+
+aws-sdk-bedrock-runtime==0.6.0
+langgraph==1.2.1
+python-dotenv==1.2.2
+telcoflow-sdk==0.27.1
+websockets>=15.0
