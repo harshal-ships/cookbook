@@ -17,7 +17,7 @@ When someone calls in, Aria has a voice conversation, asks about their symptoms,
 
 | Urgency | What Aria tells the caller |
 |--------|----------------------------|
-| **LOW** | She **cannot book** on this line. Call **+6567504645** during business hours and the clinic team will schedule an appointment. |
+| **LOW** | She **cannot book** on this line. Call **+65XXXXXX5** during business hours and the clinic team will schedule an appointment. |
 | **MEDIUM** | She tries to **transfer the caller to a nurse** for same-day review. |
 | **HIGH** | She tells them to **call 995 immediately** (Singapore emergency services). |
 
