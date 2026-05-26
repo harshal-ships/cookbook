@@ -64,11 +64,3 @@ Nova Sonic 2 only runs in **`us-east-1`**. Refresh AWS SSO credentials when the 
 ## Logs
 
 Each triage result is appended to **`triage_log.jsonl`** (one JSON object per line) with call ID, symptoms, urgency, and routing decision.
-
-## What this is not
-
-- Not a replacement for a doctor or nurse
-- Not able to book appointments on the call — callers are directed to phone the clinic
-- Not using Google ADK or Gemini for the voice layer
-
-For a minimal Telcoflow + Nova Sonic example without triage logic, see `nova_sonic_integration.py`.
