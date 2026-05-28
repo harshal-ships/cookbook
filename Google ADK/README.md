@@ -1,6 +1,6 @@
 # HealthFirst phone booking agent
 
-This is a local voice agent for **HealthFirst Clinic**. When someone calls, **Maya** answers, collects appointment details, checks the calendar, and books the visit after the call ends.
+This is a voice agent for **HealthFirst Clinic**. When someone calls, **Maya** answers, collects appointment details, checks the calendar, and books the visit after the call ends.
 
 Built with:
 
@@ -9,8 +9,6 @@ Built with:
 - **Google Calendar** — real appointment slots (not just a promise in the prompt)
 - **Gemini** — turns the call transcript into structured booking data after hang-up
 - **Telegram** (optional) — confirmations and alerts for staff
-
-No OpenClaw. No Render. Run it on your laptop, a VM, or Docker.
 
 ---
 
@@ -59,9 +57,6 @@ You will need:
 4. Your **calendar shared** with the service account email — give it **“Make changes to events”**  
 5. **Python 3.11+**
 
-Optional but recommended:
-
-- **Telegram bot** for booking confirmations and review/unavailable alerts
 
 ---
 
@@ -139,62 +134,6 @@ CLINIC_OPEN_HOUR=9
 CLINIC_CLOSE_HOUR=17
 APPOINTMENT_DURATION_MINUTES=30
 ```
-
-If a requested time is busy, Maya offers the **next 3 available slots** from the calendar. That is why you might hear “tomorrow at 9:00, 9:30, or 10:00 AM” — those are literally the first free slots the system found.
-
----
-
-## Tips for a smooth test call
-
-Speak clearly in **English** when giving:
-
-- Full name  
-- Phone number (say all 10 digits: “nine three two two nine five eight six zero eight”)  
-- Date and time (“tomorrow at 9 AM” or “today at 5 PM”)  
-- Appointment type (general checkup, specialist, follow-up)
-
-When Maya read back your details, say **“yes, that’s correct”** or **“all right”** before hanging up.
-
-If the slot you want is already booked from an earlier test, delete the old event in Google Calendar or pick a different time.
-
----
-
-## What you get after a call
-
-The terminal prints JSON like:
-
-**Success:**
-
-```json
-{
-  "status": "confirmed",
-  "booking": { "patient_name": "...", "calendar_event_id": "..." },
-  "message_sent": true
-}
-```
-
-**Needs a human:**
-
-```json
-{
-  "status": "needs_human_review",
-  "notes": "..."
-}
-```
-
-Staff get a Telegram message: `Call … needs review: …`
-
-**Slot taken:**
-
-```json
-{
-  "status": "unavailable",
-  "next_available_slots": [ ... ]
-}
-```
-
-Staff get a Telegram message with alternative times.
-
 ---
 
 ## Project layout
@@ -234,17 +173,6 @@ For production deployment, read [`DEPLOYMENT.md`](DEPLOYMENT.md).
 | No calendar events | Calendar not shared with service account | Share calendar with service account email |
 | `needs_human_review` | Noisy transcript / conflicting phone or time | Speak clearly; confirm when Maya read back |
 | `unavailable` | Slot already booked | Delete test events or choose another time |
-| Wrong phone saved | Sandbox caller ID used | Say full number clearly; Maya’s read-back is what gets booked |
 | Call drops mid-conversation | Gemini Live hiccup | Post-call still runs if there is a partial transcript; try again |
 
 ---
-
-## Security
-
-- Do not commit `.env` or service account JSON  
-- Rotate API keys if they were ever exposed  
-- Restrict Telegram `TELEGRAM_CONFIRM_CHAT_ID` to trusted staff chats  
-
----
-
-Questions or deploying to production? Start with [`DEPLOYMENT.md`](DEPLOYMENT.md).
