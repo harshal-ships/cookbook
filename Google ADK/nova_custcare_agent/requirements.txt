@@ -1,9 +1,0 @@
-# Telcoflow SDK is on TestPyPI only; everything else resolves from PyPI.
-# https://docs.telcoflow.com/introduction/overview
---extra-index-url https://test.pypi.org/simple/
-
-telcoflow-sdk>=0.24.0
-python-dotenv>=1.0.0
-google-genai>=1.14.0
-google-adk>=1.0.0
-aiosqlite>=0.20.0
