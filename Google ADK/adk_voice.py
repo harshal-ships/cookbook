@@ -1,5 +1,4 @@
 """Google ADK bidirectional voice bridge for Telcoflow phone calls."""
-
 from __future__ import annotations
 
 import asyncio
