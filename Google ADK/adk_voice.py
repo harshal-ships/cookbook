@@ -16,7 +16,11 @@ from google.genai.errors import APIError
 from telcoflow_sdk import ActiveCall
 import telcoflow_sdk.events as events
 
-from availability_inject import build_calendar_system_message, parse_appointment_slot
+from availability_inject import (
+    build_calendar_system_message,
+    parse_appointment_slot,
+    patient_time_is_complete,
+)
 from config import ADK_MODEL, APP_NAME, AUDIO_MIME_TYPE
 from prompts import INITIAL_TURN_TEXT, MAYA_BOOKING_INSTRUCTION
 from transcript import TranscriptLine, record_transcript_line
@@ -61,6 +65,7 @@ class ADKVoiceSession:
         self._call_ended = asyncio.Event()
         self._checked_slots: set[str] = set()
         self._availability_task: asyncio.Task | None = None
+        self._last_injected_slot: tuple[str, str] | None = None
 
     async def run(self) -> list[TranscriptLine]:
         @self.call.on(events.CALL_TERMINATED)
@@ -151,7 +156,6 @@ class ADKVoiceSession:
                 output_transcription = getattr(event, "output_transcription", None)
                 if output_transcription and getattr(output_transcription, "text", None):
                     record_transcript_line(self.transcript, "MAYA", output_transcription.text)
-                    self._schedule_availability_check()
 
                 content = getattr(event, "content", None)
                 if content and content.parts:
@@ -174,23 +178,46 @@ class ADKVoiceSession:
         self._availability_task = asyncio.create_task(self._inject_availability_if_ready())
 
     async def _inject_availability_if_ready(self) -> None:
-        await asyncio.sleep(1.5)
+        # Wait for the patient to finish saying the time (e.g. "4 pm", not just "4").
+        await asyncio.sleep(3.0)
         if self._terminated:
+            return
+        if not patient_time_is_complete(self.transcript):
             return
 
         slot = await asyncio.to_thread(parse_appointment_slot, self.transcript)
         if slot is None:
             return
 
+        # Require the same slot twice so partial speech does not trigger a wrong check.
+        await asyncio.sleep(1.5)
+        if self._terminated:
+            return
+        stable_slot = await asyncio.to_thread(parse_appointment_slot, self.transcript)
+        if stable_slot != slot:
+            logger.info(
+                "Skipping calendar inject for call %s; slot still changing (%s -> %s)",
+                self.call.call_id,
+                slot,
+                stable_slot,
+            )
+            return
+
         slot_key = f"{slot[0]}_{slot[1]}"
         if slot_key in self._checked_slots:
             return
 
-        message = await asyncio.to_thread(build_calendar_system_message, self.transcript)
+        is_update = self._last_injected_slot is not None and self._last_injected_slot != slot
+        message = await asyncio.to_thread(
+            build_calendar_system_message,
+            self.transcript,
+            is_update=is_update,
+        )
         if not message:
             return
 
         self._checked_slots.add(slot_key)
+        self._last_injected_slot = slot
         logger.info("Injecting calendar availability for call %s: %s %s", self.call.call_id, slot[0], slot[1])
         self.live_request_queue.send_content(types.Content(parts=[types.Part(text=message)]))
 
