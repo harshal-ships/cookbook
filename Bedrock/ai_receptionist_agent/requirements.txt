@@ -1,0 +1,6 @@
+# Python >= 3.12 (aws-sdk-bedrock-runtime)
+--extra-index-url https://test.pypi.org/simple/
+
+telcoflow-sdk==0.27.1
+python-dotenv>=1.0.0
+aws-sdk-bedrock-runtime>=0.6.0
