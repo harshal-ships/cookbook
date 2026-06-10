@@ -1,0 +1,5 @@
+# Requires Python >= 3.11 (telcoflow-sdk)
+--extra-index-url https://test.pypi.org/simple/
+google-genai>=1.57.0
+telcoflow-sdk==0.27.1
+python-dotenv>=1.0.0
